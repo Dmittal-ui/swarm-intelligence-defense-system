@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autonomous Drone Swarm Defense Simulator</title>
+  <link rel="stylesheet" href="syle.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <div>
+          <div class="logo-title">SWARM<span>DEFENSE</span></div>
+          <div class="logo-sub">Decentralized Drone Interception System</div>
+        </div>
+      </div>
+      <div class="status-badge" id="statusBadge">● STANDBY</div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Left Panel: Controls -->
+    <aside class="panel panel-left">
+      <section class="panel-section">
+        <h2 class="section-title">MISSION CONTROL</h2>
+        <div class="btn-group">
+          <button class="btn btn-start" id="btnStart">▶ START</button>
+          <button class="btn btn-pause" id="btnPause" disabled>⏸ PAUSE</button>
+          <button class="btn btn-reset" id="btnReset">↺ RESET</button>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2 class="section-title">PARAMETERS</h2>
+
+        <div class="slider-group">
+          <label>Friendly Drones <span class="slider-val" id="valFriendly">6</span></label>
+          <input type="range" id="sliderFriendly" min="2" max="16" value="6" />
+        </div>
+
+        <div class="slider-group">
+          <label>Enemy Drones <span class="slider-val" id="valEnemy">8</span></label>
+          <input type="range" id="sliderEnemy" min="2" max="20" value="8" />
+        </div>
+
+        <div class="slider-group">
+          <label>Enemy Speed <span class="slider-val" id="valSpeed">1.2</span></label>
+          <input type="range" id="sliderSpeed" min="0.5" max="3.5" step="0.1" value="1.2" />
+        </div>
+
+        <div class="slider-group">
+          <label>Spawn Rate (s) <span class="slider-val" id="valSpawn">4</span></label>
+          <input type="range" id="sliderSpawn" min="1" max="10" value="4" />
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2 class="section-title">LEGEND</h2>
+        <div class="legend">
+          <div class="legend-item"><span class="dot dot-friendly"></span> Friendly Drone</div>
+          <div class="legend-item"><span class="dot dot-enemy"></span> Enemy Drone</div>
+          <div class="legend-item"><span class="dot dot-base"></span> Protected Base</div>
+          <div class="legend-item"><span class="line-sample target-line"></span> Target Lock</div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Canvas Area -->
+    <div class="canvas-wrap">
+      <canvas id="simCanvas"></canvas>
+      <div class="canvas-overlay" id="canvasOverlay">
+        <div class="overlay-content">
+          <div class="overlay-icon">⬡</div>
+          <div class="overlay-text">SYSTEM READY</div>
+          <div class="overlay-sub">Configure parameters and press START</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel: Stats -->
+    <aside class="panel panel-right">
+      <section class="panel-section">
+        <h2 class="section-title">STATISTICS</h2>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-val" id="statDestroyed">0</div>
+            <div class="stat-label">Neutralized</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="statActive">0</div>
+            <div class="stat-label">Active Enemies</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="statFriendly">0</div>
+            <div class="stat-label">Friendly Active</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="statWaves">0</div>
+            <div class="stat-label">Waves Spawned</div>
+          </div>
+          <div class="stat-card stat-wide">
+            <div class="stat-val stat-val-sm" id="statEfficiency">--</div>
+            <div class="stat-label">Intercept Rate</div>
+          </div>
+          <div class="stat-card stat-wide">
+            <div class="stat-val stat-val-sm" id="statBaseHp">100%</div>
+            <div class="stat-label">Base Integrity</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2 class="section-title">EVENT LOG</h2>
+        <div class="event-log" id="eventLog">
+          <div class="log-entry log-system">System initialized. Awaiting start command.</div>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2 class="section-title">ALGORITHM</h2>
+        <div class="algo-info">
+          <div class="algo-step"><span class="algo-num">01</span>Each drone scans for enemies</div>
+          <div class="algo-step"><span class="algo-num">02</span>Threat = 1 / dist_to_base</div>
+          <div class="algo-step"><span class="algo-num">03</span>Target highest threat enemy</div>
+          <div class="algo-step"><span class="algo-num">04</span>Navigate & intercept</div>
+          <div class="algo-step"><span class="algo-num">05</span>Separation avoids overlap</div>
+        </div>
+      </section>
+    </aside>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
