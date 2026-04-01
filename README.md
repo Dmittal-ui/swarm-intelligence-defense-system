@@ -92,7 +92,8 @@ OR just open `index.html` in browser.
 
 ## 📸 Preview
 
-(Add screenshot here)
+<img width="1914" height="913" alt="Screenshot 2026-04-02 010649" src="https://github.com/user-attachments/assets/5885d3b6-5380-452f-a152-bb4fc332492a" />
+
 
 ---
 
@@ -104,5 +105,5 @@ MIT License
 
 ## 👨‍💻 Author
 
-Your Name
+Deeksha 
 
